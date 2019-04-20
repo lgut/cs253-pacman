@@ -13,15 +13,20 @@ import com.lguti.pacman.actors.Map;
 public class Pacman extends ApplicationAdapter {
 	Stage stage;
 	OrthographicCamera cam;
+	Map map;
 
 	@Override
 	public void create () {
-		Map map = new Map();
-		cam = new OrthographicCamera();
-		cam.viewportHeight = 320;
-		cam.viewportWidth = 480;
-		cam.position.set(map.width*map.tileSize/2, map.height*map.tileSize/2,0);
+
+		this.cam = new OrthographicCamera(480, 320);
+		cam.setToOrtho(true);
+		this.map = new Map();
+
 		stage = new Stage(new ScreenViewport(cam));
+
+		stage.addActor(map);
+		Gdx.input.setInputProcessor(stage);
+
 
 
 	}
@@ -29,11 +34,24 @@ public class Pacman extends ApplicationAdapter {
 	@Override
 	public void render () {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		float delta = Gdx.graphics.getDeltaTime();
+		stage.act(delta);
+		stage.draw();
 
 	}
 
 	@Override
 	public void dispose () {
 
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		//cam.position.set(width/2, height/2,0);
+		stage.getCamera().update();
+		stage.getViewport().update(width, height, true);
+		//cam.viewportWidth = width;
+		//cam.viewportHeight = height;
+		//cam.position.set(width / 2f, height / 2f, 0); //by default camera position on (0,0,0)
 	}
 }
