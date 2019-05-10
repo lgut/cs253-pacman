@@ -55,7 +55,6 @@ public class Map extends Actor {
         }
         loadTileSet();
         this.mapState = renderCells(this.tileLayer);
-        this.mapState.establishSiblings();
     }
 
     private Cells renderCells(int[][] tileLayer) {
@@ -104,6 +103,7 @@ public class Map extends Actor {
                 newMapState.set(x,y,c);
             }
         }
+        newMapState.establishSiblings();
         return newMapState;
     }
 

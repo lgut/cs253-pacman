@@ -18,7 +18,6 @@ import com.lguti.pacman.helpers.Tile;
 
 public class Player extends Actor {
 
-    private SpriteBatch sprite;
     private Texture spritesheet;
     private Animation<TextureRegion> upAnim;
     private Animation<TextureRegion> downAnim;
@@ -32,7 +31,6 @@ public class Player extends Actor {
     private boolean movementCompleted = true;
 
     public Player(){
-        sprite = new SpriteBatch();
         spritesheet = new Texture("pacman.png");
         TextureRegion[][] temp = TextureRegion.split(spritesheet, 32, 32);
         this.direction = Direction.LEFT;
@@ -72,7 +70,7 @@ public class Player extends Actor {
             Siblings sibs = currentPos.siblings();
 
             for (Cell sib :
-                    sibs.getSiblings()) {
+                    sibs) {
                 if(sib != null && sib.getType() != Tile.Type.WALL){
                     cellToMoveTo = sib;
                     int type = sibs.getType(sib);
@@ -115,10 +113,10 @@ public class Player extends Actor {
         if (movementCompleted == true){
             this.addAction(Actions.sequence(
                     Actions.moveTo(c.getX(),c.getY(),0.5f),
-                    new CompletedMovementCallback()
+                    new PlayerCompletedMovementCallback(c)
             ));
             this.movementCompleted = false;
-            currentPos = c;
+            //currentPos = c;
         }
         //this.addAction(Actions.moveToAligned());
     }
@@ -132,6 +130,10 @@ public class Player extends Actor {
         setX(c.getX());
         setY(c.getY());
 
+    }
+
+    public Cell getCurrentPos() {
+        return currentPos;
     }
 
     public void setDirection(Direction direction) {
@@ -171,10 +173,18 @@ class WASDListener extends InputListener {
     }
 }
 
-class CompletedMovementCallback extends Action {
+class PlayerCompletedMovementCallback extends Action {
+
+    private Cell cell;
+
+    public PlayerCompletedMovementCallback(Cell c){
+        this.cell = c;
+    }
+
     @Override
     public boolean act(float delta) {
         Player context = (Player) target;
+        context.setPos(cell);
         context.movementCompleted(true);
         return true;
     }

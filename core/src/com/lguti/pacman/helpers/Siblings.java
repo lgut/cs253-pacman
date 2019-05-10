@@ -2,7 +2,10 @@ package com.lguti.pacman.helpers;
 
 import com.lguti.pacman.actors.Cell;
 
-public class Siblings {
+import java.util.Iterator;
+import com.lguti.pacman.helpers.collections.List;
+
+public class Siblings implements Iterable<Cell> {
 
     public static final int ABOVE = 0;
     public static final int BELOW = 1;
@@ -15,7 +18,7 @@ public class Siblings {
         siblings = new Cell[4];
     }
 
-    public Cell[] getSiblings() {
+    public Cell[] toArray() {
         return siblings;
     }
 
@@ -34,5 +37,43 @@ public class Siblings {
             }
         }
         return -1;
+    }
+
+    public int length(){
+        return new SiblingsIterator(this).currentLengh();
+    }
+
+    @Override
+    public Iterator<Cell> iterator() {
+        return new SiblingsIterator(this);
+    }
+}
+
+class SiblingsIterator implements Iterator<Cell>{
+
+    private List<Cell> nonNullSiblings;
+
+    public SiblingsIterator(Siblings sibs) {
+        nonNullSiblings = new List<>();
+        for (Cell sib :
+                sibs.toArray()) {
+            if (sib != null) {
+                nonNullSiblings.add(sib);
+            }
+        }
+    }
+
+    public int currentLengh(){
+        return nonNullSiblings.size();
+    }
+
+    @Override
+    public boolean hasNext() {
+        return nonNullSiblings.size() > 0;
+    }
+
+    @Override
+    public Cell next() {
+        return nonNullSiblings.shift();
     }
 }

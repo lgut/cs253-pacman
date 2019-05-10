@@ -3,6 +3,8 @@ package com.lguti.pacman.actors;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.lguti.pacman.helpers.Siblings;
+import com.lguti.pacman.pathfinding.AdjacencyMatrix;
+import com.lguti.pacman.helpers.FindFunction;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -12,12 +14,13 @@ import java.util.NoSuchElementException;
 
 public class Cells extends Group implements Iterable<Cell> {
     private Cell[][] matrix;
-    public interface FindFunction{
-        boolean find(Cell c);
-    }
 
     public Cells(int height, int width){
         matrix = new Cell[height][width];
+    }
+
+    public int size(){
+        return matrix.length;
     }
 
     public void set(int x, int y, Cell c){
@@ -76,10 +79,10 @@ public class Cells extends Group implements Iterable<Cell> {
         };
     }
 
-    public Cell find(FindFunction f){
+    public Cell find(FindFunction<Cell> f){
         for (Cell c :
                 this) {
-            if (f.find(c) == true){
+            if (f.find(c)){
                 return c;
             }
         }
@@ -119,7 +122,10 @@ public class Cells extends Group implements Iterable<Cell> {
 
     //TODO: foreach method
     //TODO: map method
-    //TODO: getAdjacencyMatrix
+
+
+    //public AdjacencyMatrix toAdjacencyMatrix(){
+    //}
 }
 
 

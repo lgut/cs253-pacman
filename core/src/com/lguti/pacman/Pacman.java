@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.lguti.pacman.actors.Cell;
+import com.lguti.pacman.actors.Ghost;
 import com.lguti.pacman.actors.Map;
 import com.lguti.pacman.actors.Player;
 
@@ -20,6 +21,7 @@ public class Pacman extends ApplicationAdapter {
 	OrthographicCamera cam;
 	Map map;
 	Player player;
+	Ghost ghost;
 
 	@Override
 	public void create () {
@@ -28,8 +30,9 @@ public class Pacman extends ApplicationAdapter {
 		cam.setToOrtho(true);
 		this.map = new Map();
 		player = new Player();
+		ghost = new Ghost();
 
-		stage = new MainStage(map,player,new ScreenViewport(cam));
+		stage = new MainStage(map,player,ghost, new ScreenViewport(cam));
 		Gdx.input.setInputProcessor(stage);
 
 	}
