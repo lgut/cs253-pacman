@@ -1,9 +1,7 @@
 package com.lguti.pacman.actors;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.lguti.pacman.helpers.Siblings;
-import com.lguti.pacman.pathfinding.AdjacencyMatrix;
 import com.lguti.pacman.helpers.FindFunction;
 
 import java.util.Iterator;

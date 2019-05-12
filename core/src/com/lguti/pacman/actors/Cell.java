@@ -2,7 +2,6 @@ package com.lguti.pacman.actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.lguti.pacman.helpers.Bounds;
 import com.lguti.pacman.helpers.Siblings;

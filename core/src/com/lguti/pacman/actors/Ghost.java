@@ -94,8 +94,6 @@ public class Ghost extends Actor {
         Vertex<Cell> ghostVertex = vertices.find(v -> v.getData().equals(getCurrentPos()));
         Vertex<Cell> playerVertex = vertices.find(v -> v.getData().equals(player.getCurrentPos()));
 
-        // this is not the shortest path but a path
-        List<Vertex<Cell>> shitpath = SearchAlgorithms.breadthFirstSearchTo(graph,ghostVertex, playerVertex);
         List<Vertex<Cell>> path = SearchAlgorithms.Dijkstra(graph, ghostVertex, playerVertex);
         float cost = 0;
         for (Vertex<Cell> v :

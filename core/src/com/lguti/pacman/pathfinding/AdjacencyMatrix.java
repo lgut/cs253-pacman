@@ -32,20 +32,4 @@ public class AdjacencyMatrix {
         }
         return list;
     }
-
-    /*public int[] getAdjacencyList(int sourceIndex){
-        int[] temp = new int[size];
-        int count = 0;
-        for (int i = 0; i < size; i++) {
-            if (matrix[sourceIndex][i] != 0){
-                temp[i] = i;
-                count++;
-            }
-        }
-        int[] list = new int[count];
-        for (int i = 0; i < count; i++) {
-            list[i] = temp[i];
-        }
-        return list;
-    }*/
 }

@@ -3,7 +3,6 @@ package com.lguti.pacman;
 import com.badlogic.gdx.ApplicationLogger;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.lguti.pacman.actors.*;
@@ -13,7 +12,6 @@ import com.lguti.pacman.helpers.collections.List;
 import com.lguti.pacman.pathfinding.Graph;
 import com.lguti.pacman.pathfinding.Vertex;
 
-import java.util.Iterator;
 import java.util.function.Function;
 
 public class MainStage extends Stage {
@@ -40,20 +38,12 @@ public class MainStage extends Stage {
     @Override
     public void draw() {
         update();
-
-
-        // pass new graph to ghost before each render
-
         super.draw();
     }
 
     public void update(){
         detectHits();
         Graph<Cell> graph = generateGraph();
-        Vertex<Cell> playerV = graph.getVertices().find(v -> v.getData().equals(player.getCurrentPos()));
-        Vertex<Cell> ghostV = graph.getVertices().find(v -> v.getData().equals(ghost.getCurrentPos()));
-
-        
 
         ghost.findPath(graph,player);
     }

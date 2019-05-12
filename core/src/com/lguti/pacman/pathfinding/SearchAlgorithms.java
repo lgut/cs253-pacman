@@ -5,6 +5,15 @@ import com.lguti.pacman.helpers.collections.Queue;
 
 public class SearchAlgorithms {
 
+    /**
+     * Will return a list that begins with the goal vertex and ends with the source vertex
+     * Will return null if no path is found
+     * @param graph
+     * @param source
+     * @param goal
+     * @param <T>
+     * @return
+     */
     public static <T> List<Vertex<T>> Dijkstra(Graph<T> graph, Vertex<T> source, Vertex<T> goal){
         if (source.equals(goal)){
             List<Vertex<T>> ls = new List<>();

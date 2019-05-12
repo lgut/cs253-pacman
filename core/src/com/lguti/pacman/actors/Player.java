@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -116,9 +115,7 @@ public class Player extends Actor {
                     new PlayerCompletedMovementCallback(c)
             ));
             this.movementCompleted = false;
-            //currentPos = c;
         }
-        //this.addAction(Actions.moveToAligned());
     }
 
     public void movementCompleted(boolean state){

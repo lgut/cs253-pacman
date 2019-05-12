@@ -1,20 +1,8 @@
 package com.lguti.pacman.actors;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.SpriteCache;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.lguti.pacman.helpers.Tile;
 import com.lguti.pacman.helpers.TileSet;
 
@@ -35,7 +23,6 @@ import java.util.Scanner;
 
 //TODO: render texture map
 public class Map extends Actor {
-    //FIXME: graphs and such will bedend on this array
     int[][] tileLayer;
     public final int width = 21, height = 21;
     public static final int tileSize = 32;
